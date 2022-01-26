@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Response, Query, Request
 from utils import map_set
+from utils import map_read
 from utils import setdata
 
 router = APIRouter(
@@ -15,5 +16,9 @@ def set_data(
     # data: str = {}
 ):
     query_params = request.query_params._dict
+    # print(query_params)
+    
     x = map_set(query_params)
-    setdata(x)
+    r = setdata(x)
+    response.status_code = r.status_code
+    return r.json()

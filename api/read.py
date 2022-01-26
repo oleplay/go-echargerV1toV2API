@@ -17,14 +17,16 @@ def read_all(
 
     filter: Optional[str]   = None
 ):
-    data = map_read()
+    data, r = map_read()
+    print (r.status_code)
     if filter:
         filtered_data = {}
         filter = str.split(filter, ',')
         for i in filter:
             filtered_data.update({i : data[i]})
+        response.status_code = r.status_code
         return filtered_data
     else:
-        response.status_code = 200
+        response.status_code = r.status_code
         return map_read()
 
