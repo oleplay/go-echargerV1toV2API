@@ -45,3 +45,10 @@ def set(
     response.status_code = 307
     response.headers["Location"] = f"/api/v1/mqtt/?payload={payload}"
     return response
+
+@app.get("/test")
+def test(
+    response: Response
+):
+    r = utils.start_switching()
+    return r 

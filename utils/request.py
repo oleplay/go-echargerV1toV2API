@@ -1,3 +1,5 @@
+from time import timezone
+from urllib import request
 import requests
 
 
@@ -31,3 +33,18 @@ def setdatafromv1(data):
     r = requests.post(url, headers=headers)
     # print(r.url)
     return r
+
+def wait_for_boot():
+    # wait for go-echarger to reboot
+    url = "http://go-eCharger/status"
+    headers = {'Content-Type': 'application/json'}
+    while True:
+        try:
+            r = requests.get(url, headers=headers, timeout=1)
+            # print(r.text)
+            print(r.status_code)
+            if r.status_code == 200 and r.json()['car'] == '4':
+                return r
+        except requests.exceptions.ConnectionError:
+            print("Connection Error")
+            pass
