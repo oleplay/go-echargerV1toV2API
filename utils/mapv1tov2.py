@@ -1,6 +1,6 @@
 from operator import ge
 from utils.request import getdata
-def map():
+def map_read():
     datav1 = getdata()
     datav2 = {}
     datav2['fwv'] = str(datav1['fwv'])
@@ -30,7 +30,7 @@ def map():
     datav1['nrg'][6] = datav1['nrg'][6]/10 
     datav2['nrg'] = datav1['nrg']
     # wh
-    print(datav1['dws'])
+    # print(datav1['dws'])
     datav2['wh'] = float(datav1['dws'])/3600
     print(datav2['wh'])
     # cards
@@ -50,3 +50,21 @@ def map():
     datav2['cards'] = cards
     print(datav2)
     return datav2
+
+def map_set(set_data):
+    datav1 = {}
+    modified_data = {}
+    print(set_data)
+    if 'dwo' in set_data:
+        set_data['dwo'] = int(set_data['dwo']/1000)
+    if 'amp' in set_data:
+        set_data.update({'amx': int(set_data['amp'])})
+        set_data.pop('amp')
+    if 'alw' in set_data:
+        set_data['alw'] = int(bool(str(set_data['alw']).capitalize() == 'True'))
+    for i in set_data:
+        datav1.update({i : set_data[i]})
+    print(datav1)
+    return datav1
+    print(datav1)
+

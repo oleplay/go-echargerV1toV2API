@@ -6,7 +6,7 @@
 
 from mimetypes import suffix_map
 from fastapi import FastAPI
-import api.read
+import api
 import utils
 
 
@@ -18,6 +18,7 @@ app = FastAPI(
 )
 
 app.include_router(api.read.router, prefix="/api")
+app.include_router(api.set_router, prefix="/api")
 # hello world
 @app.get("/")
 def read_root():

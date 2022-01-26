@@ -1,6 +1,7 @@
 from typing import Optional
 from fastapi import APIRouter, Response, Query
-from utils import map
+# from utils import map
+from utils.mapv1tov2 import map_read
 
 # fastapi prefix /api
 router = APIRouter(
@@ -16,7 +17,7 @@ def read_all(
 
     filter: Optional[str]   = None
 ):
-    data = map()
+    data = map_read()
     if filter:
         filtered_data = {}
         filter = str.split(filter, ',')
@@ -25,5 +26,5 @@ def read_all(
         return filtered_data
     else:
         response.status_code = 200
-        return map()
+        return map_read()
 
