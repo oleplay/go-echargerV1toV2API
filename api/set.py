@@ -7,7 +7,7 @@ router = APIRouter(
     # name="Set Data",
 )
 
-
+@router.post("/set")
 @router.get("/set")
 def set_data(
     response: Response,

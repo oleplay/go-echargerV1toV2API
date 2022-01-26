@@ -7,21 +7,22 @@ router = APIRouter(
 
 @router.get("/status")
 def get_status(
-    respone: Response
+    response: Response
 ):
     
     r = utils.getdata()
-    respone.status_code= r.status_code
+    response.status_code = r.status_code
     return r.json()
 
+@router.post("/mqtt")
 @router.get("/mqtt")
 def set(
     request: Request,
-    respone: Response,
+    response: Response,
     payload: str
     ):
     print(payload)
     r = utils.setdatafromv1(payload)
-    respone.status_code = r.status_code
+    response.status_code = r.status_code
     return r.json()
     
