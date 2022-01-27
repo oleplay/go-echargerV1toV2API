@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Set Enviroment Variables
       run: |
-        IMG=go-echargerv1tov2api
+        IMG=api_image
         echo "BUILD_VER=1.0.$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
         echo "IMG=${IMG}" >> $GITHUB_ENV
         echo "IMAGE=ghcr.io/${{ github.REPOSITORY }}/${IMG}" >> $GITHUB_ENV
