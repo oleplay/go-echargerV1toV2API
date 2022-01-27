@@ -4,7 +4,6 @@
 # To run this fastapi app with uvicorn:
 # $ uvicorn main:app --reload
 
-from mimetypes import suffix_map
 from fastapi import FastAPI, Response
 import api
 import utils

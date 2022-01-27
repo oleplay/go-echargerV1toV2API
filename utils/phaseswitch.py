@@ -1,6 +1,3 @@
-from concurrent.futures import thread
-import imp
-from webbrowser import get
 from utils import getdata, setdata, wait_for_boot
 import threading
 
@@ -25,10 +22,11 @@ def switch_phases(finished):
     setdata({'alw': 0})
     print(data['pha'])
     # Wait until not charging
-    while (data['car'] == 4) and (data['nrg'][4] == 0) and ((data['pha'] == 56) or (data['pha'] == 8)):
+
+    while not(int(data['car']) == 4 and int(data['nrg'][4]) == 0 and (int(data['pha']) == 56 or int(data['pha']) == 8)):
+    # while not(data['car'] == '4' and data['nrg'][4] == '0' and data['pha'] == '56' or data['pha'] == '8') :
         print("Waiting for car to stop charging")
         data = getdata().json()
-
     print("Car stopped charging" + str(data['pha'] + data['car']))
     # Switch phases
     ## Call Tasmota Switch

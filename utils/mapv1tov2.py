@@ -1,4 +1,3 @@
-from operator import ge
 from utils.request import getdata
 def map_read():
     r = getdata()

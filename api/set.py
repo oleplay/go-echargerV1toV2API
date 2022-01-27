@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Response, Query, Request
 from utils import map_set
-from utils import map_read
 from utils import setdata
 
 router = APIRouter(
