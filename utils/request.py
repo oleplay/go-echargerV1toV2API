@@ -1,18 +1,16 @@
-from time import timezone
-from urllib import request
+import utils
 import requests
-
 
 def getdata():
     # get go-echarger data
-    url = "http://go-eCharger/status"
+    url = utils.get_env()['goecharger_url'] + "/status"
     headers = {'Content-Type': 'application/json'}
     r = requests.get(url, headers=headers)
     return r
 
 def setdata(data):
     # set go-echarger data
-    url = "http://go-eCharger/mqtt?payload="
+    url = utils.get_env()['goecharger_url'] + "/mqtt"
     headers = {'Content-Type': 'application/json'}
     # Workaround weird query_params
     params = ""
@@ -27,7 +25,7 @@ def setdata(data):
 
 def setdatafromv1(data):
     # set go-echarger data
-    url = f"http://go-eCharger/mqtt?payload={data}"
+    url = utils.get_env()['goecharger_url'] + "/mqtt?payload=" + data
     headers = {'Content-Type': 'application/json'}
     # Workaround weird query_params
     r = requests.post(url, headers=headers)
@@ -36,7 +34,7 @@ def setdatafromv1(data):
 
 def wait_for_boot():
     # wait for go-echarger to reboot
-    url = "http://go-eCharger/status"
+    url = utils.get_env()['goecharger_url'] + "/status"
     headers = {'Content-Type': 'application/json'}
     while True:
         try:

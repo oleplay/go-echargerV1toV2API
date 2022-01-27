@@ -6,3 +6,5 @@ from .mapv1tov2 import map_read
 from .mapv1tov2 import map_set
 
 from .phaseswitch import start_switching
+
+from .env_vars import get_env
